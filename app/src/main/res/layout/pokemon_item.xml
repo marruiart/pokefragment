@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="18dp">
+
+        <ImageView
+            android:id="@+id/poke_img"
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="Pokemon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/bulbasaur" />
+
+
+        <TextView
+            android:id="@+id/poke_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:textAppearance="?attr/textAppearanceTitleMedium"
+            app:layout_constraintStart_toEndOf="@+id/poke_img"
+            app:layout_constraintTop_toTopOf="@+id/poke_img"
+            tools:text="POKEMON" />
+
+        <TextView
+            android:id="@+id/poke_desription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textAppearance="?attr/textAppearanceTitleMedium"
+            app:layout_constraintStart_toStartOf="@+id/poke_name"
+            app:layout_constraintTop_toBottomOf="@+id/poke_name"
+            tools:text="Descripción del pokemon" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/poke_main_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toStartOf="@+id/poke_sec_type"
+            app:layout_constraintStart_toStartOf="@+id/poke_name"
+            app:layout_constraintTop_toBottomOf="@+id/poke_desription"
+            tools:text="Agua" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/poke_sec_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            app:layout_constraintStart_toEndOf="@+id/poke_main_type"
+            app:layout_constraintTop_toTopOf="@+id/poke_main_type"
+            tools:text="Hierba" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
+
