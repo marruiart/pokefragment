@@ -1,4 +1,4 @@
-package com.turing.alan.fragmentspokemon.ui
+package com.turing.alan.fragmentspokemon.ui.detail
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
