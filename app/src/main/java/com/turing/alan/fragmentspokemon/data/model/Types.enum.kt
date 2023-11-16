@@ -1,4 +1,4 @@
-package com.turing.alan.fragmentspokemon.models
+package com.turing.alan.fragmentspokemon.data.model
 
 enum class Types {
     BUG,

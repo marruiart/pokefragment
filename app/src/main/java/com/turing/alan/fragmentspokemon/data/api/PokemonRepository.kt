@@ -10,13 +10,19 @@ import retrofit2.http.Path
 
 interface PokemonApi {
     @GET("api/v2/pokemon/{id}")
-    suspend fun fetchPokemon(@Path("id") id: Int): PokemonApiModel
+    suspend fun fetchPokemon(@Path("id") id: Int): PokemonDetailResponse
+
+    @GET("api/v2/pokemon/{name}")
+    suspend fun fetchPokemon(@Path("name") name: String): PokemonDetailResponse
+
+    @GET("api/v2/pokemon")
+    suspend fun fetchPokemonsList(): PokemonListResponse
 }
 
 class PokemonRepository private constructor(private val api: PokemonApi) {
 
-    private var _pokemons = MutableLiveData<PokemonApiModel>()
-    val pokemons: LiveData<PokemonApiModel>
+    private var _pokemons = MutableLiveData<PokemonListApiModel>()
+    val pokemons: LiveData<PokemonListApiModel>
         get() = _pokemons
 
     companion object {
@@ -32,9 +38,27 @@ class PokemonRepository private constructor(private val api: PokemonApi) {
         }
     }
 
-    suspend fun fetch(id: Int) {
-        val pokemonResponse = api.fetchPokemon(id)
-        _pokemons.value = pokemonResponse
-        Log.d("pokemon", pokemonResponse.toString())
+    private fun mapPokemon(pokemonResponse: PokemonDetailResponse): PokemonApiModel =
+        PokemonApiModel(
+            pokemonResponse.id,
+            pokemonResponse.name,
+            pokemonResponse.weight,
+            pokemonResponse.height,
+            pokemonResponse.sprites.frontDefault,
+            pokemonResponse.types[0].type.name,
+            if (pokemonResponse.types.size == 2) pokemonResponse.types[1].type.name else null
+        )
+
+    suspend fun fetchOne(id: Int): PokemonApiModel = mapPokemon(api.fetchPokemon(id))
+
+    suspend fun fetchOne(name: String): PokemonApiModel = mapPokemon(api.fetchPokemon(name))
+
+    suspend fun fetchList() {
+        val pokemonListResponse = api.fetchPokemonsList()
+        val pokemonList = pokemonListResponse.results.map {
+            fetchOne(it.name)
+        }
+        val pokemonListApiModel = PokemonListApiModel(pokemonList)
+        _pokemons.value = pokemonListApiModel
     }
 }

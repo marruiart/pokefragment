@@ -21,6 +21,6 @@
         tools:layout="@layout/fragment_pokemon_detail" >
         <argument
             android:name="pokemon"
-            app:argType="com.turing.alan.fragmentspokemon.models.Pokemon" />
+            app:argType="com.turing.alan.fragmentspokemon.data.model.Pokemon" />
     </fragment>
 </navigation>
