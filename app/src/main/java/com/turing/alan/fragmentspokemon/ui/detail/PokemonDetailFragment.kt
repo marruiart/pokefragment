@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import coil.load
 import com.turing.alan.fragmentspokemon.data.model.Pokemon
@@ -29,7 +30,7 @@ class PokemonDetailFragment : Fragment() {
 
     // Subscribe to observable from viewModel
     val observer = Observer<Pokemon> {
-        binding.pokeName.text = it.name
+        binding.topAppBar.title = it.name
         binding.pokeImg.load(it.image)
         binding.pokeMainType.text = it.primType
         if (it.secType != null) {
@@ -42,6 +43,9 @@ class PokemonDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.topAppBar.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
         binding.loading.visibility = View.VISIBLE
         viewModel.fetchOne(args.pokeName)
         viewModel.pokemon.observe(viewLifecycleOwner, observer)

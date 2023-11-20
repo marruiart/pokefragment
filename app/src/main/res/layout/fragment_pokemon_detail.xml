@@ -1,18 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/card"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="8dp"
-    >
-
     <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="18dp">
+        android:layout_height="match_parent">
+
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_back"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/left_padding"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="18dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/right_padding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="18dp" />
 
         <ImageView
             android:id="@+id/poke_img"
@@ -20,21 +38,11 @@
             android:layout_height="194dp"
             android:adjustViewBounds="true"
             android:contentDescription="Pokemon"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/right_padding"
+            app:layout_constraintStart_toStartOf="@+id/left_padding"
+            app:layout_constraintTop_toBottomOf="@+id/topAppBar"
             tools:srcCompat="@drawable/bulbasaur" />
 
-
-        <TextView
-            android:id="@+id/poke_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:textAppearance="?attr/textAppearanceTitleMedium"
-            app:layout_constraintStart_toStartOf="@+id/poke_img"
-            app:layout_constraintTop_toBottomOf="@+id/poke_img"
-            tools:text="POKEMON" />
 
         <TextView
             android:id="@+id/poke_desription"
@@ -42,8 +50,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:textAppearance="?attr/textAppearanceTitleMedium"
-            app:layout_constraintStart_toStartOf="@+id/poke_img"
-            app:layout_constraintTop_toBottomOf="@+id/poke_name"
+            app:layout_constraintStart_toStartOf="@+id/left_padding"
+            app:layout_constraintTop_toBottomOf="@+id/poke_img"
             tools:text="Descripción del pokemon" />
 
         <com.google.android.material.chip.Chip
@@ -52,7 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             app:layout_constraintEnd_toStartOf="@+id/poke_sec_type"
-            app:layout_constraintStart_toStartOf="@+id/poke_img"
+            app:layout_constraintStart_toStartOf="@+id/left_padding"
             app:layout_constraintTop_toBottomOf="@+id/poke_desription"
             tools:text="Agua" />
 
@@ -77,5 +85,3 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-</com.google.android.material.card.MaterialCardView>
