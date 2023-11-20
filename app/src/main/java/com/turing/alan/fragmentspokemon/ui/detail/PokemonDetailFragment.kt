@@ -37,10 +37,12 @@ class PokemonDetailFragment : Fragment() {
         } else {
             binding.pokeSecType.visibility = View.GONE
         }
+        binding.loading.visibility = View.GONE
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.loading.visibility = View.VISIBLE
         viewModel.fetchOne(args.pokeName)
         viewModel.pokemon.observe(viewLifecycleOwner, observer)
     }

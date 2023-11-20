@@ -30,6 +30,7 @@ class PokemonListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.loading.visibility = View.VISIBLE
         var adapter = PokemonAdapter(::onShowDetail)
         binding.pokemonList.adapter = adapter
 
@@ -38,6 +39,7 @@ class PokemonListFragment : Fragment() {
             // update adapter
             Log.d("LISTA", it.toString())
             adapter.submitList(it)
+            binding.loading.visibility = View.GONE
         }
 
         viewModel.pokemons.observe(viewLifecycleOwner, observer)
