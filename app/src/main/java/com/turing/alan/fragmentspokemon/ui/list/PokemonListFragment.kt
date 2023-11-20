@@ -12,7 +12,7 @@ import androidx.navigation.findNavController
 import com.turing.alan.fragmentspokemon.data.model.Pokemon
 import com.turing.alan.fragmentspokemon.databinding.FragmentPokemonListBinding
 import com.turing.alan.fragmentspokemon.ui.adapter.PokemonAdapter
-import com.turing.alan.fragmentspokemon.ui.list.viewModels.PokemonListViewModel
+import com.turing.alan.fragmentspokemon.ui.list.PokemonListViewModel
 
 class PokemonListFragment : Fragment() {
     private lateinit var binding: FragmentPokemonListBinding
@@ -45,7 +45,7 @@ class PokemonListFragment : Fragment() {
 
     private fun onShowDetail(pokemon: Pokemon, view: View) {
         val action =
-            PokemonListFragmentDirections.actionPokemonListFragmentToPokemonDetailFragment(pokemon)
+            PokemonListFragmentDirections.actionPokemonListFragmentToPokemonDetailFragment(pokemon.name)
         view.findNavController().navigate(action)
     }
 }

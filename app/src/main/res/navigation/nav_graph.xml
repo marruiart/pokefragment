@@ -20,7 +20,7 @@
         android:label="fragment_pokemon_detail"
         tools:layout="@layout/fragment_pokemon_detail" >
         <argument
-            android:name="pokemon"
-            app:argType="com.turing.alan.fragmentspokemon.data.model.Pokemon" />
+            android:name="pokeName"
+            app:argType="string" />
     </fragment>
 </navigation>
