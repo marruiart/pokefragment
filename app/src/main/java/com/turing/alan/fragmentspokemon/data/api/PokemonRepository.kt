@@ -2,6 +2,7 @@ package com.turing.alan.fragmentspokemon.data.api
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.turing.alan.fragmentspokemon.services.MappingService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
@@ -37,20 +38,9 @@ class PokemonRepository private constructor(private val api: PokemonApi) {
         }
     }
 
-    private fun mapPokemonApiModel(pokemonResponse: PokemonDetailResponse): PokemonApiModel =
-        PokemonApiModel(
-            pokemonResponse.id,
-            pokemonResponse.name,
-            pokemonResponse.weight,
-            pokemonResponse.height,
-            pokemonResponse.sprites.frontDefault,
-            pokemonResponse.types[0].type.name,
-            if (pokemonResponse.types.size == 2) pokemonResponse.types[1].type.name else null
-        )
+    suspend fun fetchOne(id: Int): PokemonApiModel = MappingService.mapPokemonApiModel(api.fetchPokemon(id))
 
-    suspend fun fetchOne(id: Int): PokemonApiModel = mapPokemonApiModel(api.fetchPokemon(id))
-
-    suspend fun fetchOne(name: String): PokemonApiModel = mapPokemonApiModel(api.fetchPokemon(name))
+    suspend fun fetchOne(name: String): PokemonApiModel = MappingService.mapPokemonApiModel(api.fetchPokemon(name))
 
     suspend fun fetchList() {
         val pokemonListResponse = api.fetchPokemonsList()

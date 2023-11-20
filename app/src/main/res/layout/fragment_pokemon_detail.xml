@@ -1,87 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/topAppBar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_back"
+        app:title="bulbasaur" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/left_padding"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="18dp" />
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/topAppBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="?attr/actionBarSize"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:navigationIcon="@drawable/ic_back"/>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/right_padding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="18dp" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/left_padding"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="18dp" />
+    <ImageView
+        android:id="@+id/poke_img"
+        android:layout_width="match_parent"
+        android:layout_height="194dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="Pokemon"
+        app:layout_constraintEnd_toEndOf="@+id/right_padding"
+        app:layout_constraintStart_toStartOf="@+id/left_padding"
+        app:layout_constraintTop_toBottomOf="@+id/topAppBar"
+        tools:srcCompat="@drawable/bulbasaur" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/right_padding"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_end="18dp" />
+    <TextView
+        android:id="@+id/poke_desription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textAppearance="?attr/textAppearanceTitleMedium"
+        app:layout_constraintStart_toStartOf="@+id/left_padding"
+        app:layout_constraintTop_toBottomOf="@+id/poke_img"
+        tools:text="Descripción del pokemon" />
 
-        <ImageView
-            android:id="@+id/poke_img"
-            android:layout_width="match_parent"
-            android:layout_height="194dp"
-            android:adjustViewBounds="true"
-            android:contentDescription="Pokemon"
-            app:layout_constraintEnd_toEndOf="@+id/right_padding"
-            app:layout_constraintStart_toStartOf="@+id/left_padding"
-            app:layout_constraintTop_toBottomOf="@+id/topAppBar"
-            tools:srcCompat="@drawable/bulbasaur" />
+    <com.google.android.material.chip.Chip
+        android:id="@+id/poke_main_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/poke_sec_type"
+        app:layout_constraintStart_toStartOf="@+id/left_padding"
+        app:layout_constraintTop_toBottomOf="@+id/poke_desription"
+        tools:text="Agua" />
 
+    <com.google.android.material.chip.Chip
+        android:id="@+id/poke_sec_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toEndOf="@+id/poke_main_type"
+        app:layout_constraintTop_toTopOf="@+id/poke_main_type"
+        tools:text="Hierba" />
 
-        <TextView
-            android:id="@+id/poke_desription"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:textAppearance="?attr/textAppearanceTitleMedium"
-            app:layout_constraintStart_toStartOf="@+id/left_padding"
-            app:layout_constraintTop_toBottomOf="@+id/poke_img"
-            tools:text="Descripción del pokemon" />
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/poke_main_type"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toStartOf="@+id/poke_sec_type"
-            app:layout_constraintStart_toStartOf="@+id/left_padding"
-            app:layout_constraintTop_toBottomOf="@+id/poke_desription"
-            tools:text="Agua" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/poke_sec_type"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            app:layout_constraintStart_toEndOf="@+id/poke_main_type"
-            app:layout_constraintTop_toTopOf="@+id/poke_main_type"
-            tools:text="Hierba" />
-
-        <com.google.android.material.progressindicator.CircularProgressIndicator
-            android:id="@+id/loading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:indeterminate="true"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
